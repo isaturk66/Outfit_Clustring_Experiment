@@ -5,6 +5,8 @@ import pandas as pd
 import os
 
 from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
+
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
@@ -131,8 +133,12 @@ def prepareCordinates():
     outfit_nodes = np.array(outfit_nodes)
     outfit_dataframe = pd.DataFrame(outfit_nodes)
 
+
+    pca_75 = PCA(n_components=75)
+    pca_result_75 = pca_75.fit_transform(outfit_dataframe)
+
     tsne = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=300)
-    tsne_results = tsne.fit_transform(outfit_dataframe)
+    tsne_results = tsne.fit_transform(pca_result_75)
 
     x = tsne_results[:, 0]
     y = tsne_results[:, 1]
