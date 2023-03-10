@@ -26,7 +26,7 @@ def readTextFile(path):
 def write_outfits(outfits):
     print("Writing outfits to file")
     timestamp = str(time.time())
-    with open(f"outfits_{timestamp}.txt", "w") as f:
+    with open(f"outfits_products_{timestamp}.txt", "w") as f:
         for outfit in outfits:
             f.write(f"{outfit[0]},{outfit[1]}")
             f.write("\n")
